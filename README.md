@@ -14,7 +14,7 @@
 
 
 ## Data / Methods
-Cat - Health, Boredom, Thirst, Hunger, Waste / Play
-Dog - Health, Boredom, Thirst, Hunger, Waste / Play, Walk
-RoboCat - Health, Oil  / Play
-RoboDog - Health, Oil / Play, Walk
+* Cat - Health, Boredom, Thirst, Hunger, Waste / Play
+* Dog - Health, Boredom, Thirst, Hunger, Waste / Play, Walk
+* RoboCat - Health, Oil  / Play
+* RoboDog - Health, Oil / Play, Walk

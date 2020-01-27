@@ -17,7 +17,7 @@ public class CatTest {
 		// Assert
 		assertEquals(10, result);
 	}
-	
+
 	@Test
 	public void catStartsWithHealthOf5() {
 		// Arrange
@@ -27,7 +27,7 @@ public class CatTest {
 		// Assert
 		assertEquals(5, result);
 	}
-	
+
 	@Test
 	public void catStartsWithBoredomOf10() {
 		// Arrange
@@ -37,7 +37,7 @@ public class CatTest {
 		// Assert
 		assertEquals(10, result);
 	}
-	
+
 	@Test
 	public void catStartsWithBoredomOf5() {
 		// Arrange
@@ -47,7 +47,7 @@ public class CatTest {
 		// Assert
 		assertEquals(5, result);
 	}
-	
+
 	@Test
 	public void catStartsWithThirstOf10() {
 		// Arrange
@@ -57,17 +57,17 @@ public class CatTest {
 		// Assert
 		assertEquals(10, result);
 	}
-	
+
 	@Test
 	public void catStartsWithThirstOf5() {
 		// Arrange
-		Cat underTest = new Cat(10, 10, 5, 5, 5);
+		Cat underTest = new Cat(10, 10, 5, 5);
 		// Act
 		int result = underTest.getThirst();
 		// Assert
 		assertEquals(5, result);
 	}
-	
+
 	@Test
 	public void catStartsWithHungerOf10() {
 		// Arrange
@@ -77,43 +77,176 @@ public class CatTest {
 		// Assert
 		assertEquals(10, result);
 	}
-	
+
 	@Test
 	public void catStartsWithHungerOf5() {
 		// Arrange
-		Cat underTest = new Cat(10, 10, 5, 5, 5);
+		Cat underTest = new Cat(10, 10, 5, 5);
 		// Act
 		int result = underTest.getHunger();
 		// Assert
 		assertEquals(5, result);
 	}
-	
+
+
 	@Test
-	public void catStartsWithWaste10() {
+	public void waterDecreasesThirstBy3() {
 		// Arrange
 		Cat underTest = new Cat(10, 10);
 		// Act
-		int result = underTest.getWaste();
+		underTest.water();
+		int result = underTest.getThirst();
 		// Assert
-		assertEquals(10, result);
+		assertEquals(7, result);
 	}
-	
+
 	@Test
-	public void catStartsWithWaste5() {
-		// Arrange
-		Cat underTest = new Cat(10,10,5,5,5);
-		// Act
-		int result = underTest.getWaste();
-		// Assert
-		assertEquals(5, result);
-	}
-	
-	@Test
-	public void playDecreasesBoredomBy3() {
+	public void waterDoesNotDecreasesThirstLessThan0() {
 		// Arrange
 		Cat underTest = new Cat(10, 10);
 		// Act
-		underTest.play();
+		underTest.water();
+		underTest.water();
+		underTest.water();
+		underTest.water();
+		int result = underTest.getThirst();
+		// Assert
+		assertEquals(0, result);
 	}
+
+	@Test
+	public void feedDecreasesHungerBy3() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		underTest.feed();
+		int result = underTest.getHunger();
+		// Assert
+		assertEquals(7, result);
+	}
+
+	@Test
+	public void feedDoesNotDecreasesHungerLessThan0() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		underTest.feed();
+		underTest.feed();
+		underTest.feed();
+		underTest.feed();
+		int result = underTest.getHunger();
+		// Assert
+		assertEquals(0, result);
+	}
+
+	@Test
+	public void soilReturns2() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		int result = underTest.soil();
+		// Assert
+		assertEquals(2, result);
+	}
+	
+	@Test
+	public void tickReturns2() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		int result = underTest.tick();
+		// Assert
+		assertEquals(2, result);
+	}
+	
+	@Test
+	public void tickIncreasesBoredomBy2() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getBoredom();
+		// Assert
+		assertEquals(12, result);
+	}
+	
+	@Test
+	public void tickDoesNotIncreasesBoredomAbove20() {
+		// Arrange
+		Cat underTest = new Cat(10, 20);
+		// Act
+		underTest.tick();
+		int result = underTest.getBoredom();
+		// Assert
+		assertEquals(20, result);
+	}
+	
+	@Test
+	public void tickIncreasesThirstBy2() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getThirst();
+		// Assert
+		assertEquals(12, result);
+	}
+	
+	@Test
+	public void tickDoesNotIncreasesThirstAbove20() {
+		// Arrange
+		Cat underTest = new Cat(10, 10, 20, 20);
+		// Act
+		underTest.tick();
+		int result = underTest.getThirst();
+		// Assert
+		assertEquals(20, result);
+	}
+
+	@Test
+	public void tickIncreasesHungerBy2() {
+		// Arrange
+		Cat underTest = new Cat(10, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getHunger();
+		// Assert
+		assertEquals(12, result);
+	}
+	
+	@Test
+	public void tickDoesNotIncreasesHungerAbove20() {
+		// Arrange
+		Cat underTest = new Cat(10, 10, 20, 20);
+		// Act
+		underTest.tick();
+		int result = underTest.getHunger();
+		// Assert
+		assertEquals(20, result);
+	}
+	
+	@Test
+	public void waterIncreasesHealthBy1() {
+		// Arrange
+		Cat underTest = new Cat(10, 10, 20, 20);
+		// Act
+		underTest.water();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(11, result);
+	}
+	
+	@Test
+	public void feedIncreasesHealthBy1() {
+		// Arrange
+		Cat underTest = new Cat(10, 10, 20, 20);
+		// Act
+		underTest.feed();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(11, result);
+	}
+	
+	
 
 }
