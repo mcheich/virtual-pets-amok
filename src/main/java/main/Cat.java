@@ -73,7 +73,6 @@ public class Cat extends Pet implements Organic {
 	}
 
 	public void checkHealth() {
-		// TODO Auto-generated method stub
 		
 	}
 

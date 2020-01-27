@@ -18,7 +18,16 @@ public class Pet {
 		return this.boredom;
 	}
 	
-	public void checkHealth();
+	/**
+	 * :MIKEQ: I want this method to be implemented by every child.
+	 * But if I make this method abstract, then the entire class must be abstract
+	 * and I want some implementation in this class.  
+	 * Is there a way to make a contract for this method without the entire class
+	 * being abstract? 
+	 */
+	public void checkHealth() {
+		
+	}
 
 	public void play() {
 		this.boredom -= 3;

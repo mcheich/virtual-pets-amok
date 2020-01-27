@@ -247,6 +247,17 @@ public class CatTest {
 		assertEquals(11, result);
 	}
 	
+	@Test
+	public void checkHealthDecreasesHealthBy1() {
+		// Arrange
+		Cat underTest = new Cat(5, 6, 6, 6);
+		// Act
+		underTest.checkHealth();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(9, result);
+	}
+	
 	
 
 }
