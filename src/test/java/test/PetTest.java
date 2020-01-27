@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import main.Cat;
+import main.Organic;
 import main.Pet;
 
 public class PetTest {
@@ -88,5 +89,17 @@ public class PetTest {
 		// Assert
 		assertEquals(20, result);		
 	}
+	
+	@Test
+	public void boredomeOf15IncreasesHealthBy1() {
+		// Arrange
+		Pet underTest = new Pet(10, 15);
+		// Act
+		underTest.checkHealth();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(11, result);
+	}
+
 
 }

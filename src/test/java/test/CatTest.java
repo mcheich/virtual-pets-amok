@@ -226,14 +226,14 @@ public class CatTest {
 	}
 	
 	@Test
-	public void waterIncreasesHealthBy1() {
+	public void waterDecreaseHealthBy1() {
 		// Arrange
 		Cat underTest = new Cat(10, 10, 20, 20);
 		// Act
 		underTest.water();
 		int result = underTest.getHealth();
 		// Assert
-		assertEquals(11, result);
+		assertEquals(9, result);
 	}
 	
 	@Test
@@ -246,18 +246,6 @@ public class CatTest {
 		// Assert
 		assertEquals(9, result);
 	}
-	
-	@Test
-	public void checkHealthDecreasesHealthBy1() {
-		// Arrange
-		Cat underTest = new Cat(5, 6, 6, 6);
-		// Act
-		underTest.checkHealth();
-		int result = underTest.getHealth();
-		// Assert
-		assertEquals(9, result);
-	}
-	
 	
 
 }

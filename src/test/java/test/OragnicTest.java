@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import main.Cat;
 import main.Organic;
 
 public class OragnicTest {
@@ -257,7 +258,39 @@ public class OragnicTest {
 		// Assert
 		assertEquals(11, result);
 	}
+
+	@Test
+	public void hungerOf15IncreasesHealthBy1() {
+		// Arrange
+		Organic underTest = new Organic(10, 10, 10, 15);
+		// Act
+		underTest.checkHealth();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(11, result);
+	}
 	
+	@Test
+	public void tickCallsPetsChecksHealth() {
+		// Arrange
+		Organic underTest = new Organic(10, 15, 10, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(11, result);
+	}
+	
+	@Test
+	public void tickIncreasesBoredomeBy1() {
+		// Arrange
+		Organic underTest = new Organic(10, 10, 10, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getBoredom();
+		// Assert
+		assertEquals(11, result);
+	}
 	
 
 }

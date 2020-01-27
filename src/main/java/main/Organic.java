@@ -2,8 +2,10 @@ package main;
 
 public class Organic extends Pet {
 
+	private static final int _HEALTH_REDUCTION = -1; // Amount to reduce health by when feed() or water() are called
 	private static final int _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH = 15; // Field Threshold used by checkHealth to
-																		// determine if health should increase (get worse).
+																		// determine if health should increase (get
+																		// worse).
 	private static final int _SOIL_AMOUNT = 1; // Value to return when soil is called
 	private static final int _TICK_INCREASE_FIELD_AMOUNT = 2; // amount to increase field values during tick
 	private static final int _MAX_ORGANIC_FIELD_VALUE = 20; // Max value for thirst and hunger
@@ -33,7 +35,7 @@ public class Organic extends Pet {
 
 	public void water() {
 		this.thirst -= _THIRST_REDUCTION;
-		super.adjustHealth(-1);
+		super.adjustHealth(_HEALTH_REDUCTION);
 
 		// Enforce thirst 0 or greater
 		if (this.thirst < _MIN_ORGANIC_FIELD_VALUE) {
@@ -43,7 +45,7 @@ public class Organic extends Pet {
 
 	public void feed() {
 		this.hunger -= _HUNGER_REDUCTION;
-		super.adjustHealth(-1);
+		super.adjustHealth(_HEALTH_REDUCTION);
 
 		// Enforce hunger 0 or greater
 		if (this.hunger < _MIN_ORGANIC_FIELD_VALUE) {
@@ -57,7 +59,9 @@ public class Organic extends Pet {
 
 	@Override
 	public int tick() {
-		super.tick(); // increase Boredom
+		
+		super.tick(); // increase Boredom and Check Health
+		super.checkHealth();
 
 		this.thirst += _TICK_INCREASE_FIELD_AMOUNT;
 		this.hunger += _TICK_INCREASE_FIELD_AMOUNT;
@@ -69,13 +73,17 @@ public class Organic extends Pet {
 		if (this.hunger > _MAX_ORGANIC_FIELD_VALUE) {
 			this.hunger = _MAX_ORGANIC_FIELD_VALUE;
 		}
-
+		
 		return soil();
 	}
 
+	@Override
 	public void checkHealth() {
 
 		if (this.thirst >= _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH) {
+			this.health++;
+		}
+		if (this.hunger >= _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH) {
 			this.health++;
 		}
 

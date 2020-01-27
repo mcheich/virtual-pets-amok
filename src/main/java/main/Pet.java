@@ -2,6 +2,13 @@ package main;
 
 public class Pet {
 
+	private static final int _HEALTH_REDUCTION = 1; //Amount to reduce health by when play() is called
+	private static final int _MAX_BOREDOM = 20; // Highest amount boredom can be
+	private static final int _MIN_BOREDOM = 0; // Lowest amount boredom can be
+	private static final int _BOREDOM_REDUCTION = 3; // Amount to reduce boredom when play() is called
+	private static final int _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH = 15; // Field Threshold used by checkHealth to
+																		// determine if health should increase (get
+																		// worse).
 	protected int health = 10;
 	protected int boredom = 10;
 
@@ -25,28 +32,34 @@ public class Pet {
 	 * method without the entire class being abstract?
 	 */
 	public void checkHealth() {
-
+		if (this.boredom >= _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH) {
+			adjustHealth(1);
+			System.out.println("Check Health CALLED - IF Captured");
+		}
+		System.out.println("Check Health CALLED");
 	}
 
 	public void play() {
-		this.boredom -= 3;
-		adjustHealth(1);
+		this.boredom -= _BOREDOM_REDUCTION;
+		adjustHealth(_HEALTH_REDUCTION);
 
 		// Enforce boredom 0 or greater
-		if (this.boredom < 0) {
-			this.boredom = 0;
+		if (this.boredom < _MIN_BOREDOM) {
+			this.boredom = _MIN_BOREDOM;
 		}
 
 	}
 
 	public int tick() {
-
 		this.boredom++;
 
 		// Enforce boredom 20 or less
-		if (this.boredom > 20) {
-			this.boredom = 20;
+		if (this.boredom > _MAX_BOREDOM) {
+			this.boredom = _MAX_BOREDOM;
 		}
+		
+		
+		System.out.println("PET TICK CALLED");
 
 		return 0;
 	}
@@ -61,12 +74,12 @@ public class Pet {
 		this.health += healthChange;
 
 		// Enforce boredom 0 or greater
-		if (this.health < 0) {
-			this.health = 0;
+		if (this.health < _MIN_BOREDOM) {
+			this.health = _MIN_BOREDOM;
 		}
 		// Enforce health 20 or less
-		if (this.health > 20) {
-			this.health = 20;
+		if (this.health > _MAX_BOREDOM) {
+			this.health = _MAX_BOREDOM;
 		}
 	}
 
