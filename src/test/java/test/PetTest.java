@@ -66,5 +66,27 @@ public class PetTest {
 		// Assert
 		assertEquals(11, result);
 	}
+	
+	@Test
+	public void tickShouldIncreaseBoredomBy1() {
+		// Arrange
+		Pet underTest = new Pet(10, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getBoredom();
+		// Assert
+		assertEquals(11, result);		
+	}
+	
+	@Test
+	public void tickShouldnotIncreaseBoredomByMoreThan20() {
+		// Arrange
+		Pet underTest = new Pet(10, 20);
+		// Act
+		underTest.tick();
+		int result = underTest.getBoredom();
+		// Assert
+		assertEquals(20, result);		
+	}
 
 }
