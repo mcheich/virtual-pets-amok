@@ -237,14 +237,14 @@ public class CatTest {
 	}
 	
 	@Test
-	public void feedIncreasesHealthBy1() {
+	public void feedDecreasesHealthBy1() {
 		// Arrange
 		Cat underTest = new Cat(10, 10, 20, 20);
 		// Act
 		underTest.feed();
 		int result = underTest.getHealth();
 		// Assert
-		assertEquals(11, result);
+		assertEquals(9, result);
 	}
 	
 	@Test

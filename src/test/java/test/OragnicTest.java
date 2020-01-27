@@ -226,36 +226,36 @@ public class OragnicTest {
 	}
 	
 	@Test
-	public void waterIncreasesHealthBy1() {
+	public void waterDecreasesHealthBy1() {
 		// Arrange
 		Organic underTest = new Organic(10, 10, 20, 20);
 		// Act
 		underTest.water();
 		int result = underTest.getHealth();
 		// Assert
-		assertEquals(11, result);
+		assertEquals(9, result);
 	}
 	
 	@Test
-	public void feedIncreasesHealthBy1() {
+	public void feedDecreasesHealthBy1() {
 		// Arrange
 		Organic underTest = new Organic(10, 10, 20, 20);
 		// Act
 		underTest.feed();
 		int result = underTest.getHealth();
 		// Assert
-		assertEquals(11, result);
+		assertEquals(9, result);
 	}
 	
 	@Test
-	public void checkHealthDecreasesHealthBy1() {
+	public void thirstOf15IncreasesHealthBy1() {
 		// Arrange
-		Organic underTest = new Organic(5, 6, 6, 6);
+		Organic underTest = new Organic(10, 10, 15, 10);
 		// Act
 		underTest.checkHealth();
 		int result = underTest.getHealth();
 		// Assert
-		assertEquals(9, result);
+		assertEquals(11, result);
 	}
 	
 	
