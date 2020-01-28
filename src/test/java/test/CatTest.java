@@ -160,14 +160,14 @@ public class CatTest {
 	}
 	
 	@Test
-	public void tickIncreasesBoredomBy2() {
+	public void tickIncreasesBoredomBy1() {
 		// Arrange
 		Cat underTest = new Cat(10, 10);
 		// Act
 		underTest.tick();
 		int result = underTest.getBoredom();
 		// Assert
-		assertEquals(12, result);
+		assertEquals(11, result);
 	}
 	
 	@Test
@@ -182,14 +182,14 @@ public class CatTest {
 	}
 	
 	@Test
-	public void tickIncreasesThirstBy2() {
+	public void tickIncreasesThirstBy1() {
 		// Arrange
 		Cat underTest = new Cat(10, 10);
 		// Act
 		underTest.tick();
 		int result = underTest.getThirst();
 		// Assert
-		assertEquals(12, result);
+		assertEquals(11, result);
 	}
 	
 	@Test
@@ -204,14 +204,14 @@ public class CatTest {
 	}
 
 	@Test
-	public void tickIncreasesHungerBy2() {
+	public void tickIncreasesHungerBy1() {
 		// Arrange
 		Cat underTest = new Cat(10, 10);
 		// Act
 		underTest.tick();
 		int result = underTest.getHunger();
 		// Assert
-		assertEquals(12, result);
+		assertEquals(11, result);
 	}
 	
 	@Test

@@ -183,14 +183,14 @@ public class OragnicTest {
 	}
 	
 	@Test
-	public void tickIncreasesThirstBy2() {
+	public void tickIncreasesThirstBy1() {
 		// Arrange
 		Organic underTest = new Organic(10, 10);
 		// Act
 		underTest.tick();
 		int result = underTest.getThirst();
 		// Assert
-		assertEquals(12, result);
+		assertEquals(11, result);
 	}
 	
 	@Test
@@ -205,14 +205,14 @@ public class OragnicTest {
 	}
 
 	@Test
-	public void tickIncreasesHungerBy2() {
+	public void tickIncreasesHungerBy1() {
 		// Arrange
 		Organic underTest = new Organic(10, 10);
 		// Act
 		underTest.tick();
 		int result = underTest.getHunger();
 		// Assert
-		assertEquals(12, result);
+		assertEquals(11, result);
 	}
 	
 	@Test
@@ -253,7 +253,7 @@ public class OragnicTest {
 		// Arrange
 		Organic underTest = new Organic(10, 10, 15, 10);
 		// Act
-		underTest.checkHealth();
+		underTest.checkHealthConditions();
 		int result = underTest.getHealth();
 		// Assert
 		assertEquals(11, result);
@@ -264,7 +264,7 @@ public class OragnicTest {
 		// Arrange
 		Organic underTest = new Organic(10, 10, 10, 15);
 		// Act
-		underTest.checkHealth();
+		underTest.checkHealthConditions();
 		int result = underTest.getHealth();
 		// Assert
 		assertEquals(11, result);

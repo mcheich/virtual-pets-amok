@@ -95,7 +95,7 @@ public class PetTest {
 		// Arrange
 		Pet underTest = new Pet(10, 15);
 		// Act
-		underTest.checkHealth();
+		underTest.checkHealthConditions();
 		int result = underTest.getHealth();
 		// Assert
 		assertEquals(11, result);

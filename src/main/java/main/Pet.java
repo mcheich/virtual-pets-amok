@@ -31,12 +31,10 @@ public class Pet {
 	 * implementation in this class. Is there a way to make a contract for this
 	 * method without the entire class being abstract?
 	 */
-	public void checkHealth() {
+	public void checkHealthConditions() {
 		if (this.boredom >= _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH) {
 			adjustHealth(1);
-			System.out.println("Check Health CALLED - IF Captured");
 		}
-		System.out.println("Check Health CALLED");
 	}
 
 	public void play() {
@@ -57,9 +55,6 @@ public class Pet {
 		if (this.boredom > _MAX_BOREDOM) {
 			this.boredom = _MAX_BOREDOM;
 		}
-		
-		
-		System.out.println("PET TICK CALLED");
 
 		return 0;
 	}
