@@ -32,7 +32,7 @@ VirtualPetShelter Class
 - [ ] cleaning dog cages
 - [ ] emptying the litterbox
 - [ ] modify existing methods to only feed/water pets that are not robotic
-~~include a tick method that calls the tick method for each of the pets in the shelter, updating their needs~~
+~~- [ ] include a tick method that calls the tick method for each of the pets in the shelter, updating their needs~~
 
 Pet Class
 - [x] name (from the above example, this might be “Tommy”)
