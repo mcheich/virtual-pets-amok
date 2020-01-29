@@ -4,7 +4,6 @@ public class RoboDog extends Robotic implements DogStuff {
 
 	public RoboDog(int health, int boredom) {
 		super(health, boredom);
-		// TODO Auto-generated constructor stub
 	}
 
 	public RoboDog(int health, int boredom, int oilLevel) {

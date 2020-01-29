@@ -3,7 +3,7 @@ package main;
 public class Robotic extends Pet {
 
 	private int oilLevel = 10;
-	
+
 	public Robotic(int health, int boredom) {
 		super(health, boredom);
 	}
@@ -27,6 +27,28 @@ public class Robotic extends Pet {
 			this.oilLevel = 0;
 		}
 
+	}
+
+	@Override
+	public int tick() {
+		
+		checkHealthConditions();
+		this.oilLevel++;
+
+		if (this.oilLevel > 20) {
+			this.oilLevel = 20;
+		}
+
+		return 0; // Robots do not create waste ...HMM :QMIKE: Is this kosher?
+	}
+	
+	@Override
+	public void checkHealthConditions() {
+		super.checkHealthConditions();
+		
+		if(this.oilLevel >= 15) {
+			this.adjustHealth(1);
+		}
 	}
 
 }
