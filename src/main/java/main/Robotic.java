@@ -3,7 +3,7 @@ package main;
 public class Robotic extends Pet {
 
 	private int oilLevel = 10;
-
+	
 	public Robotic(int health, int boredom) {
 		super(health, boredom);
 	}
