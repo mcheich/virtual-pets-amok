@@ -2,6 +2,8 @@ package main;
 
 public class Pet {
 
+	private static final int _MIN_HEALTH = 0;
+	private static final int _MAX_HEALTH = 20;
 	private static final int _HEALTH_REDUCTION = 1; //Amount to reduce health by when play() is called
 	private static final int _MAX_BOREDOM = 20; // Highest amount boredom can be
 	private static final int _MIN_BOREDOM = 0; // Lowest amount boredom can be
@@ -48,6 +50,10 @@ public class Pet {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int tick() {
 		this.boredom++;
 
@@ -69,12 +75,12 @@ public class Pet {
 		this.health += healthChange;
 
 		// Enforce boredom 0 or greater
-		if (this.health < _MIN_BOREDOM) {
-			this.health = _MIN_BOREDOM;
+		if (this.health < _MIN_HEALTH) {
+			this.health = _MIN_HEALTH;
 		}
 		// Enforce health 20 or less
-		if (this.health > _MAX_BOREDOM) {
-			this.health = _MAX_BOREDOM;
+		if (this.health > _MAX_HEALTH) {
+			this.health = _MAX_HEALTH;
 		}
 	}
 

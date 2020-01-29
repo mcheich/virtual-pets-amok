@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import main.Cat;
+import main.Dog;
 
 public class CatTest {
 
@@ -245,6 +246,17 @@ public class CatTest {
 		int result = underTest.getHealth();
 		// Assert
 		assertEquals(9, result);
+	}
+	
+	@Test
+	public void catThirst15IncreasesHealthBy1() {
+		// Arrange
+		Cat underTest = new Cat(10, 10, 15, 10);
+		// Act
+		underTest.tick();
+		int result = underTest.getHealth();
+		// Assert
+		assertEquals(11, result);
 	}
 	
 

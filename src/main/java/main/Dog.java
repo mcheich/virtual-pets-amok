@@ -12,8 +12,10 @@ public class Dog extends Organic implements DogStuff {
 		super(health, boredom);
 	}
 	
-	public Dog(int health, int boredom, int k, int l) {
+	public Dog(int health, int boredom, int thirst, int hunger) {
 		super(health, boredom);
+		this.thirst = thirst;
+		this.hunger = hunger;
 	}
 
 	/**
@@ -31,6 +33,12 @@ public class Dog extends Organic implements DogStuff {
 	public int soil() {
 		System.out.println((needsToSoil ? 1:0 ) * 2);
 		return (needsToSoil ? 1:0 ) * 2;
+	}
+	
+	@Override
+	public int tick() {
+		super.tick();
+		return soil();
 	}
 
 }
