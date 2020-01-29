@@ -74,4 +74,15 @@ public class RoboDogTest {
 		assertEquals(11, result);
 	}
 
+	@Test
+	public void getNameReturnsTest() {
+		// Arrange
+		RoboDog underTest = new RoboDog("test", "",10, 10, 15);
+		// Act
+		underTest.tick();
+		String result = underTest.getName();
+		// Assert
+		assertEquals("test", result);
+	}
+
 }

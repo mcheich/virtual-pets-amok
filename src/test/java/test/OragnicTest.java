@@ -292,5 +292,45 @@ public class OragnicTest {
 		assertEquals(11, result);
 	}
 	
+	@Test
+	public void getNameReturnsTest() {
+		// Arrange
+		Organic underTest = new Organic("test","",10, 10, 10, 10);
+		// Act
+		String result = underTest.getName();
+		// Assert
+		assertEquals("test", result);
+	}
+
+	@Test
+	public void getDescriptionReturnsTest() {
+		// Arrange
+		Organic underTest = new Organic("test","test",10, 10, 10, 10);
+		// Act
+		String result = underTest.getDescription();
+		// Assert
+		assertEquals("test", result);
+	}
+
+	@Test
+	public void getThirstReturns11() {
+		// Arrange
+		Organic underTest = new Organic("test","test",10, 10, 11, 10);
+		// Act
+		int result = underTest.getThirst();
+		// Assert
+		assertEquals(11, result);
+	}
+
+	@Test
+	public void getHungerReturns11() {
+		// Arrange
+		Organic underTest = new Organic("test","test",10, 10, 10, 11);
+		// Act
+		int result = underTest.getHunger();
+		// Assert
+		assertEquals(11, result);
+	}
+	
 
 }

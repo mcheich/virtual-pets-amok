@@ -39,4 +39,35 @@ public class RoboticTest {
 		//Assert
 		assertEquals(0,result);
 	}
+
+	@Test
+	public void getNameReturnsTest() {
+		// Arrange
+		Robotic underTest = new Robotic("test","",10,10,10);
+		// Act
+		String result = underTest.getName();
+		//Assert
+		assertEquals("test",result);
+	}
+
+	@Test
+	public void getDecriptionReturnsTest() {
+		// Arrange
+		Robotic underTest = new Robotic("test","test",10,10,10);
+		// Act
+		String result = underTest.getDescription();
+		//Assert
+		assertEquals("test",result);
+	}
+
+	@Test
+	public void getOilLevelReturns11() {
+		// Arrange
+		Robotic underTest = new Robotic("test","test",10,10,11);
+		// Act
+		int result = underTest.getOilLevel();
+		//Assert
+		assertEquals(11,result);
+	}
+	
 }

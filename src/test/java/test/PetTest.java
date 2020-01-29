@@ -100,6 +100,46 @@ public class PetTest {
 		// Assert
 		assertEquals(11, result);
 	}
+	
+	@Test
+	public void getNameReturnsTest() {
+		// Arrange
+		Pet underTest = new Pet("test", "",10,10);
+		// Act
+		String result = underTest.getName();
+		//Assert
+		assertEquals("test", result);
+	}
+
+	@Test
+	public void getDescriptionReturnsTest() {
+		// Arrange
+		Pet underTest = new Pet("test", "test",10,10);
+		// Act
+		String result = underTest.getDescription();
+		//Assert
+		assertEquals("test", result);
+	}
+	
+	@Test
+	public void getHealthReturns11() {
+		// Arrange
+		Pet underTest = new Pet("test", "test",11,10);
+		// Act
+		int result = underTest.getHealth();
+		//Assert
+		assertEquals(11, result);
+	}
+	
+	@Test
+	public void getBoredomeReturns11() {
+		// Arrange
+		Pet underTest = new Pet("test", "test",10,11);
+		// Act
+		int result = underTest.getBoredom();
+		//Assert
+		assertEquals(11, result);
+	}
 
 
 }

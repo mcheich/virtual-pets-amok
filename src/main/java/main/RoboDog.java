@@ -10,6 +10,10 @@ public class RoboDog extends Robotic implements DogStuff {
 		super(health, boredom, oilLevel);
 	}
 
+	public RoboDog(String name, String description, int health, int boredom, int oilLevel) {
+		super(name, description, health, boredom, oilLevel);
+	}
+
 	@Override
 	public void walk() {
 		super.adjustHealth(-1);

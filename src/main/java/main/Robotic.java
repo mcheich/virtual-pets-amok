@@ -13,6 +13,11 @@ public class Robotic extends Pet {
 		this.oilLevel = oilLevel;
 	}
 
+	public Robotic(String name, String description, int health, int boredom, int oilLevel) {
+		super(name, description, health, boredom);
+		this.oilLevel = oilLevel;
+	}
+
 	public int getOilLevel() {
 		return oilLevel;
 	}

@@ -9,14 +9,36 @@ public class Pet {
 	private static final int _MIN_BOREDOM = 0; // Lowest amount boredom can be
 	private static final int _BOREDOM_REDUCTION = 3; // Amount to reduce boredom when play() is called
 	private static final int _FIELD_THRESHOLD_FOR_ADVERSE_HEALTH = 15; // Field Threshold used by checkHealth to
-																		// determine if health should increase (get
-																		// worse).
+																		// determine if health should increase (get // worse).
+	private String name;
+	private String description;
 	protected int health = 10;
 	protected int boredom = 10;
 
 	public Pet(int health, int boredom) {
 		this.health = health;
 		this.boredom = boredom;
+	}
+	
+	public Pet(String name, String description, int health, int boredom) {
+		this.name = name;
+		this.description = description;
+		this.health = health;
+		this.boredom = boredom;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
 	}
 
 	public int getHealth() {

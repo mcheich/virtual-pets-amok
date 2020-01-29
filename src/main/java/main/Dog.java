@@ -18,6 +18,10 @@ public class Dog extends Organic implements DogStuff {
 		this.hunger = hunger;
 	}
 
+	public Dog(String name, String description, int health, int boredom, int thirst, int hunger) {
+		super(name, description, health, boredom, thirst, hunger);	
+	}
+
 	/**
 	 * Walking the dog reduces health value (which is good!)
 	 * and reduces soil amount.
