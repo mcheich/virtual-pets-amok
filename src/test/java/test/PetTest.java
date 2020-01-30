@@ -140,6 +140,26 @@ public class PetTest {
 		//Assert
 		assertEquals(11, result);
 	}
+	
+	@Test
+	public void createsPetWithNameTest() {
+		// Arrange
+		Pet underTest = new Pet("test", "");
+		// Act
+		String result = underTest.getName();
+		//Assert
+		assertEquals("test", result);
+	}
+
+	@Test
+	public void createsPetWithDescriptionTest() {
+		// Arrange
+		Pet underTest = new Pet("", "test");
+		// Act
+		String result = underTest.getDescription();
+		//Assert
+		assertEquals("test", result);
+	}
 
 
 }

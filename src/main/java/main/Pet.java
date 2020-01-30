@@ -15,6 +15,11 @@ public class Pet {
 	protected int health = 10;
 	protected int boredom = 10;
 
+	public Pet(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+	
 	public Pet(int health, int boredom) {
 		this.health = health;
 		this.boredom = boredom;
@@ -26,6 +31,7 @@ public class Pet {
 		this.health = health;
 		this.boredom = boredom;
 	}
+
 
 	/**
 	 * @return the name
@@ -49,6 +55,7 @@ public class Pet {
 		return this.boredom;
 	}
 
+	
 	/**
 	 * :MIKEQ: I want this method to be implemented by every child. But if I make
 	 * this method abstract, then the entire class must be abstract and I want some
@@ -105,5 +112,6 @@ public class Pet {
 			this.health = _MAX_HEALTH;
 		}
 	}
+
 
 }

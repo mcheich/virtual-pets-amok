@@ -39,6 +39,7 @@ public class Robotic extends Pet {
 		
 		checkHealthConditions();
 		this.oilLevel++;
+		super.tick();
 
 		if (this.oilLevel > 20) {
 			this.oilLevel = 20;
