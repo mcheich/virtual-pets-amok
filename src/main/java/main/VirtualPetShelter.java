@@ -10,22 +10,21 @@ public class VirtualPetShelter {
 
 	private Map<Integer, Pet> shelter = new HashMap<Integer, Pet>();
 	private Map<String, Integer> cages = new HashMap<String, Integer>();
-	
+
 	private int litterBox = 10;
-	
 
 	public int getLitterBox() {
 		return litterBox;
 	}
-	
+
 	public Collection<Pet> getRoster() {
 		return this.shelter.values();
 	}
-	
+
 	public Map<Integer, Pet> getShelter() {
 		return this.shelter;
 	}
-	
+
 	public void intake(String petType, String name, String description) {
 
 		int key = shelter.size() + 1;
@@ -34,6 +33,7 @@ public class VirtualPetShelter {
 		case "dog":
 			Dog newDog = new Dog(name, description, 10, 10, 10, 10);
 			this.shelter.put(key, newDog);
+			this.cages.put(name, 0); // Give new dog a cage
 			break;
 		case "cat":
 			Cat newCat = new Cat(name, description, 10, 10, 10, 10);
@@ -52,7 +52,6 @@ public class VirtualPetShelter {
 			this.shelter.put(key, undefinedPet);
 		}
 	}
-
 
 	public Pet getPetByName(String name) {
 		Set<Entry<Integer, Pet>> pets = shelter.entrySet();
@@ -122,16 +121,58 @@ public class VirtualPetShelter {
 	public void tick() {
 
 		for (Pet pet : shelter.values()) {
-			pet.tick();
 
-			// Check litterBox
-			if ((pet instanceof Cat) && (litterBox  > 10)) {
-				((Cat) pet).adjustHealth(1);
+			pet.tick();
+			updateLitterBox(pet);
+			updateDogCages(pet);
+
+		}
+	}
+
+	private void updateDogCages(Pet pet) {
+
+		String petName = pet.getName();
+		boolean isDog = pet instanceof Dog;
+		boolean hasCage = cages.containsKey(pet.getName());
+		int dirtyThreshold = 10;
+		
+		if(isDog && hasCage) {
+			
+			int existingSoilAmount = cages.get(petName);
+			int newSoilAmount = ((Dog) pet).soil();
+			
+			if (existingSoilAmount >= dirtyThreshold) {
+				pet.adjustHealth(1);
 			}
-			if (pet instanceof Cat) {
-				litterBox += ((Cat) pet).soil();
-			}
-		}	
+			cages.put(petName, existingSoilAmount + newSoilAmount);
+		}
+	}
+
+	/*
+	 * I am leaving this to show class.
+	 * 
+	 * 
+	 * //If dog has cage if (pet instanceof Dog && cages.containsKey(pet.getName()))
+	 * {
+	 * 
+	 * int currentSoilAmount = cages.get(pet.getName());
+	 * 
+	 * // If dirty, increase health if (currentSoilAmount >= 10) {
+	 * pet.adjustHealth(1); }
+	 * 
+	 * // Update soil: Current soil plus new soil cages.put(pet.getName(),
+	 * currentSoilAmount + ((Dog) pet).soil()); }
+	 */
+
+	private void updateLitterBox(Pet pet) {
+
+		if ((pet instanceof Cat) && (litterBox > 10)) {
+			((Cat) pet).adjustHealth(1);
+		}
+		if (pet instanceof Cat) {
+			litterBox += ((Cat) pet).soil();
+		}
+
 	}
 
 	public void cleanLitterBox() {
@@ -146,6 +187,15 @@ public class VirtualPetShelter {
 			}
 		}
 		return 0;
+	}
+
+	
+	public void cleanCages() {
+		
+		for (Map.Entry<String, Integer> cage : cages.entrySet()) {
+			cage.setValue(0);
+		}
+
 	}
 
 }

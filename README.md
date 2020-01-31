@@ -29,7 +29,7 @@ VirtualPetShelter Class
 - [x] water all of the pets in the shelter
 - [x] plays (or performs some other interaction(s)) with an individual pet in the shelter
 - [x] oiling/maintaining all robotic pets
-- [ ] cleaning dog cages
+- [x] cleaning dog cages
 - [ ] emptying the litterbox
 - [x] modify existing methods to only feed/water pets that are not robotic
 - [ ] ~~include a tick method that calls the tick method for each of the pets in the shelter, updating their needs~~
@@ -48,15 +48,14 @@ do not allow:
 	oiling organic pets
 - [x] modify the tick method to return a value indicating the amount of waste a pet creates, which should contribute to either (optionally, create accessor methods to retrieve these values instead):
 	- [x] amount of waste in the litter box
-	- [ ] amount of waste in an individual dog cage
+	- [x] amount of waste in an individual dog cage
 	
 VirtualPetShelterApp class
-- [ ] Create a main method that…
 - [ ] implements a game loop.
 - [ ] asks for user input.
 - [ ] writes output to the console.
 - [ ] calls VirtualPetShelter’s tick method after each interaction
-- [ ] Available user interface actions should include (at minimum)…
+	Available user interface actions should include (at minimum)…
 - [ ] feeding all the pets
 - [ ] watering all the pets
 - [ ] playing with an individual pet, which should display a list of pet names and descriptions, allowing a user to select one

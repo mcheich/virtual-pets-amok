@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import main.Cat;
 import main.Dog;
+import main.Organic;
 import main.Pet;
 import main.RoboCat;
 import main.RoboDog;
@@ -96,7 +97,7 @@ public class VirtualPetShelterTest {
 		// Assert
 		assertEquals("cat_test", result.getName());
 	}
-	
+
 	@Test
 	public void getPetByNameReturnsNotInSystemForIncorrectPetName() {
 		// Arrange
@@ -111,7 +112,7 @@ public class VirtualPetShelterTest {
 		// Assert
 		assertEquals("Not in system", result.getName());
 	}
-	
+
 	@Test
 	public void adoptOutRemovesCat() {
 		// Arrange
@@ -127,7 +128,7 @@ public class VirtualPetShelterTest {
 		// Assert
 		assertEquals(4, result);
 	}
-	
+
 	@Test
 	public void feedDecreasesHungerOfOrganicDogBy3() {
 		// Arrange
@@ -142,7 +143,7 @@ public class VirtualPetShelterTest {
 		Dog test = (Dog) underTest.getShelter().get(1);
 		int result = test.getHunger();
 		// Assert
-		assertEquals(7, result);		
+		assertEquals(7, result);
 	}
 
 	@Test
@@ -159,9 +160,9 @@ public class VirtualPetShelterTest {
 		Cat test = (Cat) underTest.getShelter().get(2);
 		int result = test.getHunger();
 		// Assert
-		assertEquals(7, result);		
+		assertEquals(7, result);
 	}
-	
+
 	@Test
 	public void waterDecreasesThirstOfOrganicDogBy3() {
 		// Arrange
@@ -176,9 +177,9 @@ public class VirtualPetShelterTest {
 		Dog test = (Dog) underTest.getShelter().get(1);
 		int result = test.getThirst();
 		// Assert
-		assertEquals(7, result);		
+		assertEquals(7, result);
 	}
-	
+
 	@Test
 	public void feedDecreasesThirstOfOrganicCatBy3() {
 		// Arrange
@@ -193,7 +194,7 @@ public class VirtualPetShelterTest {
 		Cat test = (Cat) underTest.getShelter().get(2);
 		int result = test.getThirst();
 		// Assert
-		assertEquals(7, result);		
+		assertEquals(7, result);
 	}
 
 	@Test
@@ -210,9 +211,9 @@ public class VirtualPetShelterTest {
 		Cat test = (Cat) underTest.getShelter().get(2);
 		int result = test.getBoredom();
 		// Assert
-		assertEquals(7, result);		
+		assertEquals(7, result);
 	}
-	
+
 	@Test
 	public void playDecreasesBoredomOfRoboticDogBy3() {
 		// Arrange
@@ -227,7 +228,7 @@ public class VirtualPetShelterTest {
 		RoboDog test = (RoboDog) underTest.getShelter().get(3);
 		int result = test.getBoredom();
 		// Assert
-		assertEquals(7, result);		
+		assertEquals(7, result);
 	}
 
 	@Test
@@ -244,7 +245,7 @@ public class VirtualPetShelterTest {
 		RoboDog test = (RoboDog) underTest.getShelter().get(3);
 		int result = test.getOilLevel();
 		// Assert
-		assertEquals(9, result);		
+		assertEquals(9, result);
 	}
 
 	@Test
@@ -261,7 +262,7 @@ public class VirtualPetShelterTest {
 		RoboCat test = (RoboCat) underTest.getShelter().get(4);
 		int result = test.getOilLevel();
 		// Assert
-		assertEquals(9, result);		
+		assertEquals(9, result);
 	}
 
 	@Test
@@ -278,7 +279,7 @@ public class VirtualPetShelterTest {
 		RoboCat test = (RoboCat) underTest.getShelter().get(4);
 		int result = test.getBoredom();
 		// Assert
-		assertEquals(11, result);		
+		assertEquals(11, result);
 	}
 
 	@Test
@@ -295,9 +296,9 @@ public class VirtualPetShelterTest {
 		RoboCat test = (RoboCat) underTest.getShelter().get(4);
 		int result = test.getOilLevel();
 		// Assert
-		assertEquals(11, result);		
+		assertEquals(11, result);
 	}
-	
+
 	@Test
 	public void tickIncreasesHungerDogBy1() {
 		// Arrange
@@ -312,7 +313,7 @@ public class VirtualPetShelterTest {
 		Dog test = (Dog) underTest.getShelter().get(1);
 		int result = test.getHunger();
 		// Assert
-		assertEquals(11, result);		
+		assertEquals(11, result);
 	}
 
 	@Test
@@ -331,9 +332,9 @@ public class VirtualPetShelterTest {
 		Cat test = (Cat) underTest.getShelter().get(2);
 		int result = test.getHealth();
 		// Assert
-		assertEquals(11, result);		
+		assertEquals(11, result);
 	}
-	
+
 	@Test
 	public void ifLitterBoxIsGreaterThan10IncreaseOrganicCat2HealthBy1() {
 		// Arrange
@@ -349,9 +350,9 @@ public class VirtualPetShelterTest {
 		Cat test = (Cat) underTest.getShelter().get(3);
 		int result = test.getHealth();
 		// Assert
-		assertEquals(11, result);		
+		assertEquals(11, result);
 	}
-	
+
 	@Test
 	public void ifLitterBoxIsGreaterThan10DoNotIncreaseOrganicDogHealthBy1() {
 		// Arrange
@@ -367,7 +368,7 @@ public class VirtualPetShelterTest {
 		Dog test = (Dog) underTest.getShelter().get(1);
 		int result = test.getHealth();
 		// Assert
-		assertEquals(10, result);		
+		assertEquals(10, result);
 	}
 
 	@Test
@@ -384,9 +385,9 @@ public class VirtualPetShelterTest {
 		underTest.tick();
 		int result = underTest.getLitterBox();
 		// Assert
-		assertEquals(14, result);		
+		assertEquals(14, result);
 	}
-	
+
 	@Test
 	public void cleanLitterBoxStesLitterBoxTo0() {
 		// Arrange
@@ -401,14 +402,15 @@ public class VirtualPetShelterTest {
 		underTest.cleanLitterBox();
 		int result = underTest.getLitterBox();
 		// Assert
-		assertEquals(0, result);		
+		assertEquals(0, result);
 	}
-	
+
 	@Test
 	public void tickIncreasesDogCageWasteBy2() {
 		// Arrange
 		VirtualPetShelter underTest = new VirtualPetShelter();
 		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
 		underTest.intake("cat", "cat_test", "cat description");
 		underTest.intake("cat", "cat2_test", "cat2 description");
 		underTest.intake("roboDog", "roboDog_test", "roboDog description");
@@ -418,7 +420,64 @@ public class VirtualPetShelterTest {
 		underTest.tick();
 		int result = underTest.getCageCleanlinessByName("dog_test");
 		// Assert
-		assertEquals(2, result);		
+		assertEquals(2, result);
+	}
+
+	@Test
+	public void tickIncreasesDog2CageWasteBy2() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		underTest.tick();
+		int result = underTest.getCageCleanlinessByName("dog2_test");
+		// Assert
+		assertEquals(2, result);
+	}
+
+	@Test
+	public void dogWasteAbove10InCageIncreaseHealthBy1() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		for (int i = 0; i < 6; i++) {
+			underTest.tick();
+		}
+		int result = underTest.getPetByName("dog_test").getHealth();
+		// Assert
+		assertEquals(14, result);
+	}
+
+	@Test
+	public void cleanCagesRemocesAllSoilFromCages() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		underTest.tick();
+		underTest.cleanCages();
+		int result = underTest.getCageCleanlinessByName("dog_test");
+		// Assert
+		assertEquals(0, result);
 	}
 
 }
