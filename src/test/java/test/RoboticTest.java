@@ -19,14 +19,16 @@ public class RoboticTest {
 	}
 	
 	@Test
-	public void oilReducesOilLevel1() {
+	public void oilReducesOilLevelBy_OILLEVEL_REDUCTION_AMOUNT() {
 		// Arrange
 		Robotic underTest = new Robotic(10,10,10);
+		int expected = underTest.getOillevelReductionAmount();
 		// Act
+		int existingOilLevel = underTest.getOilLevel();
 		underTest.oil();
 		int result = underTest.getOilLevel();
 		//Assert
-		assertEquals(9,result);
+		assertEquals(expected,existingOilLevel-result);
 	}
 
 	@Test

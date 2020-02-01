@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
@@ -54,7 +55,19 @@ public class VirtualPetShelterApp {
 				break;
 			case "7":
 				shelter.oil();
+				oilMessage();
 				break;
+			case "8":
+				shelter.cleanCages();
+				cleanCagesMessage();
+				break;
+			case "9":
+				shelter.cleanLitterBox();
+				cleanLitterBoxMessage();
+				break;
+			default:
+				errorMessage(selection);
+					
 			}
 
 			// "Time Passes"...
@@ -66,25 +79,49 @@ public class VirtualPetShelterApp {
 
 		System.out.println("Goodbye now!");
 		System.exit(0);
-
 	}
+
+	private static void cleanLitterBoxMessage() {
+		System.out.println("#################################");
+		System.out.println("## You cleaned the litter box! ##");
+		System.out.println("#################################\n");
+	}
+
+	private static void cleanCagesMessage() {
+		System.out.println("############################");
+		System.out.println("## You cleaned the cages! ##");
+		System.out.println("############################\n");
+	}
+
+	private static void errorMessage(String selection) {
+		System.out.println("#############################################################");
+		System.out.println("Your last entry " + selection + "is an option.  Try again! ##");
+		System.out.println("#############################################################\n");
+	}
+
+	private static void oilMessage() {
+		System.out.println("#################################");
+		System.out.println("## You oiled the robotic pets! ##");
+		System.out.println("#################################\n");
+	}
+	
 
 	/**
 	 * Prints watered acknowledgement to console
 	 */
 	private static void wateredMessage() {
-		System.out.println("###############################");
-		System.out.println("## You watered all the pets! ##");
-		System.out.println("###############################\n");
+		System.out.println("###################################");
+		System.out.println("## You watered the organic pets! ##");
+		System.out.println("###################################\n");
 	}
 
 	/**
 	 * Prints fed acknowledgement to console
 	 */
 	private static void fedMessage() {
-		System.out.println("###########################");
-		System.out.println("## You fed all the pets! ##");
-		System.out.println("###########################\n");
+		System.out.println("###############################");
+		System.out.println("## You fed the organic pets! ##");
+		System.out.println("###############################\n");
 	}
 
 	private static void playMessage() {
@@ -177,9 +214,23 @@ public class VirtualPetShelterApp {
 	 * Prints user options to console.
 	 */
 	private static void showOptions() {
+		
+		ArrayList<String> optionList = new ArrayList<String>();
+		optionList.add("Feed organic pets");
+		optionList.add("Water organic pets");
+		optionList.add("Play with pets");
+		optionList.add("Adopt a pet");
+		optionList.add("Admit a pet");
+		optionList.add("Play with a specific pet");
+		optionList.add("Oil robitic pets");
+		optionList.add("Clean dog cages");
+		optionList.add("Clean the litterbox");
+		optionList.add("Quit");
+		
 		System.out.println("## What would you like to do with your pets? ##\n");
-		System.out.println("1. Feed the pets\n" + "2. Water the pets\n" + "3. Play with pets\n" + "4. Adopt a pet\n"
-				+ "5. Admit a pet\n" + "4. Play with a pet\n" + "6. Quit");
+		for(int option = 0; option <optionList.size(); option++) {
+			System.out.println((option + 1 ) + " " + optionList.get(option));
+		}	
 	}
 
 	/**

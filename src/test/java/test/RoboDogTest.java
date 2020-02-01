@@ -9,14 +9,16 @@ import main.RoboDog;
 public class RoboDogTest {
 
 	@Test
-	public void oilDecreasesOilLevelBy1() {
+	public void oilDecreasesOilLevelBy_OILLEVEL_REDUCTION_AMOUNT() {
 		// Arrange
 		RoboDog underTest = new RoboDog(10, 10, 10);
+		int expected = underTest.getOillevelReductionAmount();
 		// Act
+		int existingOilLevel = underTest.getOilLevel();
 		underTest.oil();
 		int result = underTest.getOilLevel();
 		// Assert
-		assertEquals(9, result);
+		assertEquals(expected, existingOilLevel - result);
 	}
 
 	@Test
@@ -77,7 +79,7 @@ public class RoboDogTest {
 	@Test
 	public void getNameReturnsTest() {
 		// Arrange
-		RoboDog underTest = new RoboDog("test", "",10, 10, 15);
+		RoboDog underTest = new RoboDog("test", "", 10, 10, 15);
 		// Act
 		underTest.tick();
 		String result = underTest.getName();

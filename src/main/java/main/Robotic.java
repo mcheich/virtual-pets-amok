@@ -2,6 +2,8 @@ package main;
 
 public class Robotic extends Pet {
 
+	private final static int _OILLEVEL_REDUCTION_AMOUNT = 5;
+
 	private int oilLevel = 10;
 
 	public Robotic(int health, int boredom) {
@@ -18,15 +20,19 @@ public class Robotic extends Pet {
 		this.oilLevel = oilLevel;
 	}
 
+	public int getOillevelReductionAmount() {
+		return _OILLEVEL_REDUCTION_AMOUNT;
+	}
+	
 	public int getOilLevel() {
-		return oilLevel;
+		return this.oilLevel;
 	}
 
 	/**
 	 * Reduce oil level
 	 */
 	public void oil() {
-		this.oilLevel--;
+		this.oilLevel -= _OILLEVEL_REDUCTION_AMOUNT;
 
 		if (this.oilLevel < 0) {
 			this.oilLevel = 0;

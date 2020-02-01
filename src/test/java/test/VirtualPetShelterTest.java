@@ -231,25 +231,9 @@ public class VirtualPetShelterTest {
 		assertEquals(7, result);
 	}
 
-	@Test
-	public void oilDecreasesOilLevelOfRoboticDogBy1() {
-		// Arrange
-		VirtualPetShelter underTest = new VirtualPetShelter();
-		underTest.intake("dog", "dog_test", "dog description");
-		underTest.intake("cat", "cat_test", "cat description");
-		underTest.intake("roboDog", "roboDog_test", "roboDog description");
-		underTest.intake("roboCat", "roboCat_test", "roboCat description");
-		underTest.intake("undefined", "undefined_test", "undefined description");
-		// Act
-		underTest.oil();
-		RoboDog test = (RoboDog) underTest.getShelter().get(3);
-		int result = test.getOilLevel();
-		// Assert
-		assertEquals(9, result);
-	}
 
 	@Test
-	public void oilDecreasesOilLevelOfRoboticCatBy1() {
+	public void oilDecreasesOilLevelOfRoboticDogBy_OILLEVEL_REDUCTION_AMOUNT() {
 		// Arrange
 		VirtualPetShelter underTest = new VirtualPetShelter();
 		underTest.intake("dog", "dog_test", "dog description");
@@ -258,11 +242,32 @@ public class VirtualPetShelterTest {
 		underTest.intake("roboCat", "roboCat_test", "roboCat description");
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
+		RoboDog test = (RoboDog) underTest.getShelter().get(3);
+		int expected = test.getOillevelReductionAmount();
+		int existingOilLevel = test.getOilLevel();
 		underTest.oil();
-		RoboCat test = (RoboCat) underTest.getShelter().get(4);
 		int result = test.getOilLevel();
 		// Assert
-		assertEquals(9, result);
+		assertEquals(expected,existingOilLevel-result);
+	}
+	
+	@Test
+	public void oilDecreasesOilLevelOfRoboticCatBy_OILLEVEL_REDUCTION_AMOUNT() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		RoboCat test = (RoboCat) underTest.getShelter().get(4);
+		int expected = test.getOillevelReductionAmount();
+		int existingOilLevel = test.getOilLevel();
+		underTest.oil();
+		int result = test.getOilLevel();
+		// Assert
+		assertEquals(expected,existingOilLevel-result);
 	}
 
 	@Test
