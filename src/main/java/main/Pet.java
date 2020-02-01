@@ -103,7 +103,7 @@ public class Pet {
 
 		this.health += healthChange;
 
-		// Enforce boredom 0 or greater
+		// Enforce health 0 or greater
 		if (this.health < _MIN_HEALTH) {
 			this.health = _MIN_HEALTH;
 		}

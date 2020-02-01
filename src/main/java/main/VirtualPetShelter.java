@@ -198,7 +198,7 @@ public class VirtualPetShelter {
 	}
 
 	public boolean isInShelter(String name) {
-		// TODO Auto-generated method stub
+
 		for (Map.Entry<Integer, Pet> entry : shelter.entrySet()) {
 			if (entry.getValue().getName().equals(name)) {
 				return true;
@@ -206,5 +206,13 @@ public class VirtualPetShelter {
 		}
 		return false;
 	}
+	
 
+	public int getKeyByName(String name) {
+		// TODO Auto-generated method stub
+		for (Entry<Integer, Pet> pet : shelter.entrySet()) {
+			return pet.getKey();
+		}
+		return 0;
+	}
 }

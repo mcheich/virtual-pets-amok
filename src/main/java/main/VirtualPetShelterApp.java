@@ -18,6 +18,7 @@ public class VirtualPetShelterApp {
 		shelter.intake("roboDog", "RoboRover", "A Robotic Dog");
 		shelter.intake("roboCat", "CanCat", "A Robotic Cat.");
 
+		
 		/* Show Welcome Message */
 		showWelcomeMessage();
 
@@ -184,7 +185,7 @@ public class VirtualPetShelterApp {
 
 		/* List Pets */
 		for (Pet pet : shelter.getRoster()) {
-
+			
 			String petName = pet.getName();
 			String petDescription = pet.getDescription();
 			System.out.println(String.format("[%1$s] %2$s", petName, petDescription));
@@ -193,7 +194,7 @@ public class VirtualPetShelterApp {
 		/* User make selection */
 		System.out.println();
 		System.out.println("## Type the name of the animal you'd like to play with: ##\n");
-		String petName = input.nextLine(); // Tried nextLine() here, but wouldn't work
+		String petName = input.nextLine();
 
 		/* User Output */
 		if (shelter.isInShelter(petName)) {
@@ -242,8 +243,8 @@ public class VirtualPetShelterApp {
 		System.out.println("#########################################################");
 		System.out.println("##                   Pet Status Table                  ##");
 		System.out.println("---------------------------------------------------------");
-		System.out.println("Name        |Health |Boredom|Thirst |Hunger | Oil Level |");
-		System.out.println("------------|-------|-------|-------|-------|-----------|");
+		System.out.println("Name        |Health |Boredom|Thirst |Hunger | Oil Level | Dog Cage Waste | Litter Box Waste");
+		System.out.println("------------|-------|-------|-------|-------|-----------|----------------|------------------");
 
 		/* List Pets */
 		for (Pet pet : shelter.getRoster()) {
@@ -259,12 +260,22 @@ public class VirtualPetShelterApp {
 
 				int petThirst = ((Organic) pet).getThirst();
 				int petHunger = ((Organic) pet).getHunger();
-				System.out.println(String.format("%1$-7s|%2$-7s|", petThirst, petHunger));
+				System.out.print(String.format("%1$-7s|%2$-7s|", petThirst, petHunger));
 			}
 			if (pet instanceof Robotic) {
 
 				int petOilLevel = ((Robotic) pet).getOilLevel();
 				System.out.println(String.format("%1$-7s|%2$-7s|%3$-7s", "NA", "NA", petOilLevel));
+			}
+			if (pet instanceof Dog) {
+
+				int cageWaste = shelter.getCageCleanlinessByName(petName);
+				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "NA", cageWaste, "NA"));
+			}
+			if (pet instanceof Cat) {
+
+				int litterBoxWaste = shelter.getLitterBox();
+				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "NA", "NA", litterBoxWaste));
 			}
 
 		}

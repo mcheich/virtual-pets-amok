@@ -520,5 +520,23 @@ public class VirtualPetShelterTest {
 		
 	}
 
+	@Test
+	public void getKeyByNameReturnKey() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		int result = underTest.getKeyByName("DOG_TEST");
+		// Assert
+		assertEquals(2, result);
+		
+	}
+
 
 }
