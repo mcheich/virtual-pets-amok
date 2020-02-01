@@ -26,7 +26,6 @@ public class Organic extends Pet {
 	}
 
 	public Organic(String name, String description, int health, int boredom, int thirst, int hunger) {
-		// TODO Auto-generated constructor stub
 		super(name, description, health, boredom);
 		this.thirst = thirst;
 		this.hunger = hunger;

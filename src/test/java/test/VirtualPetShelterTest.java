@@ -480,4 +480,40 @@ public class VirtualPetShelterTest {
 		assertEquals(0, result);
 	}
 
+	@Test
+	public void isInShelterIsTrueForDog_Test() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		boolean result = underTest.isInShelter("dog_test");
+		// Assert
+		assertEquals(true, result);
+	}
+
+	@Test
+	public void isInShelterIsFalseForTest() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		boolean result = underTest.isInShelter("test");
+		// Assert
+		assertEquals(false, result);
+		
+	}
+
+
 }

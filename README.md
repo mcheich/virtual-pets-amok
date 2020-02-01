@@ -30,9 +30,9 @@ VirtualPetShelter Class
 - [x] plays (or performs some other interaction(s)) with an individual pet in the shelter
 - [x] oiling/maintaining all robotic pets
 - [x] cleaning dog cages
-- [ ] emptying the litterbox
+- [x] emptying the litterbox
 - [x] modify existing methods to only feed/water pets that are not robotic
-- [ ] ~~include a tick method that calls the tick method for each of the pets in the shelter, updating their needs~~
+- [x] ~~include a tick method that calls the tick method for each of the pets in the shelter, updating their needs~~
 
 Pet Class
 - [x] name (from the above example, this might be “Tommy”)

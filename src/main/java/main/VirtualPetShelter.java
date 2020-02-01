@@ -135,12 +135,12 @@ public class VirtualPetShelter {
 		boolean isDog = pet instanceof Dog;
 		boolean hasCage = cages.containsKey(pet.getName());
 		int dirtyThreshold = 10;
-		
-		if(isDog && hasCage) {
-			
+
+		if (isDog && hasCage) {
+
 			int existingSoilAmount = cages.get(petName);
 			int newSoilAmount = ((Dog) pet).soil();
-			
+
 			if (existingSoilAmount >= dirtyThreshold) {
 				pet.adjustHealth(1);
 			}
@@ -189,13 +189,22 @@ public class VirtualPetShelter {
 		return 0;
 	}
 
-	
 	public void cleanCages() {
-		
+
 		for (Map.Entry<String, Integer> cage : cages.entrySet()) {
 			cage.setValue(0);
 		}
 
+	}
+
+	public boolean isInShelter(String name) {
+		// TODO Auto-generated method stub
+		for (Map.Entry<Integer, Pet> entry : shelter.entrySet()) {
+			if (entry.getValue().getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
