@@ -280,7 +280,7 @@ public class VirtualPetShelterApp {
 			}
 			if (pet instanceof Dog) {
 
-				int cageWaste = shelter.getCageCleanlinessByKey(petName);
+				int cageWaste = shelter.getCageCleanlinessByKey(nextPet);
 				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "NA", cageWaste, "NA"));
 			}
 			if (pet instanceof Cat) {

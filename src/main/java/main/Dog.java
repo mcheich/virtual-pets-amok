@@ -35,7 +35,6 @@ public class Dog extends Organic implements DogStuff {
 	
 	@Override
 	public int soil() {
-		System.out.println((needsToSoil ? 1:0 ) * 2);
 		return (needsToSoil ? 1:0 ) * 2;
 	}
 	
