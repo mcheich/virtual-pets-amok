@@ -424,7 +424,7 @@ public class VirtualPetShelterTest {
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
 		underTest.tick();
-		int result = underTest.getCageCleanlinessByKey("dog_test");
+		int result = underTest.getCageCleanlinessByKey(1);
 		// Assert
 		assertEquals(2, result);
 	}
@@ -442,7 +442,7 @@ public class VirtualPetShelterTest {
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
 		underTest.tick();
-		int result = underTest.getCageCleanlinessByKey("2");
+		int result = underTest.getCageCleanlinessByKey(2);
 		// Assert
 		assertEquals(2, result);
 	}
@@ -481,7 +481,7 @@ public class VirtualPetShelterTest {
 		// Act
 		underTest.tick();
 		underTest.cleanCages();
-		int result = underTest.getCageCleanlinessByKey("dog_test");
+		int result = underTest.getCageCleanlinessByKey(1);
 		// Assert
 		assertEquals(0, result);
 	}
