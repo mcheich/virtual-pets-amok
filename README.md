@@ -1,16 +1,11 @@
 # Virtual Pets Amok
 
-- [ ] oilAllRobots()
-	
-- [ ] cleanAllCages()
+I considered multiple inheritance structures.  
 
-- [ ] emptyLitterBox()
+You can see them here:
+https://drive.google.com/open?id=18bGOjMoBqv_Gzu6Y5_BGKxIhH930hulryjaajsvPMMg
 
-- [ ] has interfaces for necessary functionality
-
-- [ ] instance variable for health
-
-- [ ] modify tick() - amount of waste in the litter box and amount of waste in an individual dog cage
+I went with slide 5.
 
 
 ## Data / Methods
@@ -51,17 +46,17 @@ do not allow:
 	- [x] amount of waste in an individual dog cage
 	
 VirtualPetShelterApp class
-- [ ] implements a game loop.
-- [ ] asks for user input.
-- [ ] writes output to the console.
-- [ ] calls VirtualPetShelter’s tick method after each interaction
+- [x] implements a game loop.
+- [x] asks for user input.
+- [x] writes output to the console.
+- [x] calls VirtualPetShelter’s tick method after each interaction
 	Available user interface actions should include (at minimum)…
-- [ ] feeding all the pets
-- [ ] watering all the pets
-- [ ] playing with an individual pet, which should display a list of pet names and descriptions, allowing a user to select one
-- [ ] allow adoption of a pet, which should display a list of pet names and descriptions, allowing a user to select one
-- [ ] allow intake of a pet, prompting the user for the pet’s information, requiring the user to (at minimum) specify name and description
-- [ ] walk all dogs
-- [ ] clean dog cages
-- [ ] clean the shelter litterbox
-- [ ] oil all robotic pets
+- [x] feeding all the pets
+- [x] watering all the pets
+- [x] playing with an individual pet, which should display a list of pet names and descriptions, allowing a user to select one
+- [x] allow adoption of a pet, which should display a list of pet names and descriptions, allowing a user to select one
+- [x] allow intake of a pet, prompting the user for the pet’s information, requiring the user to (at minimum) specify name and description
+- [x] walk all dogs
+- [x] clean dog cages
+- [x] clean the shelter litterbox
+- [x] oil all robotic pets
