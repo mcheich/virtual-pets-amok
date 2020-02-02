@@ -7,6 +7,17 @@ https://drive.google.com/open?id=18bGOjMoBqv_Gzu6Y5_BGKxIhH930hulryjaajsvPMMg
 
 I went with slide 5.
 
+This program simulates a pet shelter that hold virtual pets.
+Pets can be either Robotic or Organic.  The current child classes are robocat, robodog,cat,dog. 
+
+The main device the pet shelter uses is a Map to store the pets.
+
+The shelter has many methods to care for the pets.
+
+The user-interface is a separate class named VituralPetShelterApp
+
+The user-interface takes care of user input, and displaying information to the console.  The user-interface talks only with the VirtualPetShelter, not directly to any pets.
+
 
 ## Data / Methods
 * Cat - Health, Boredom, Thirst, Hunger, Waste / Play
