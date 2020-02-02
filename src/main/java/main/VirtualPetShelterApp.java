@@ -67,6 +67,8 @@ public class VirtualPetShelterApp {
 				shelter.cleanLitterBox();
 				cleanLitterBoxMessage();
 				break;
+			case "10":
+				break;
 			default:
 				errorMessage(selection);
 					
