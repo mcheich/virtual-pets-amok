@@ -68,6 +68,8 @@ public class VirtualPetShelterApp {
 				cleanLitterBoxMessage();
 				break;
 			case "10":
+				shelter.walkDogs();
+				walkDogsMessage();
 				break;
 			default:
 				errorMessage(selection);
@@ -77,12 +79,19 @@ public class VirtualPetShelterApp {
 			// "Time Passes"...
 			shelter.tick();
 
-		} while (!selection.equals("10"));
+		} while (!selection.equals("11"));
 
 		input.close();
 
 		System.out.println("Goodbye now!");
 		System.exit(0);
+	}
+
+	private static void walkDogsMessage() {
+		System.out.println("#################################");
+		System.out.println("## You walked the dogs!        ##");
+		System.out.println("#################################\n");
+		
 	}
 
 	private static void cleanLitterBoxMessage() {
@@ -149,9 +158,13 @@ public class VirtualPetShelterApp {
 
 		// Remove pet is in system, otherwise advise not in system.
 		if (match) {
-			System.out.println(adopteeName + " has been adopted!\n");
+			System.out.println("###################################");
+			System.out.println(adopteeName + " has been adopted! ##");
+			System.out.println("###################################\n");
 		} else {
-			System.out.println(adopteeName + " does not match our records.\n");
+			System.out.println("#############################################");
+			System.out.println(adopteeName + " does not match our records. ##");
+			System.out.println("#############################################\n");
 		}
 	}
 
@@ -232,6 +245,7 @@ public class VirtualPetShelterApp {
 		optionList.add("Oil robitic pets");
 		optionList.add("Clean dog cages");
 		optionList.add("Clean the litterbox");
+		optionList.add("Walk the dogs");
 		optionList.add("Quit");
 		
 		System.out.println("## What would you like to do with your pets? ##\n");
