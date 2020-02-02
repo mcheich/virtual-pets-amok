@@ -135,15 +135,6 @@ public class VirtualPetShelter {
 			updateDogCages(thisPet, key);
 			
 		}
-		
-//		for (Pet pet : shelter.values()) {
-//
-//			pet.tick();
-//			updateLitterBox(pet);
-//			updateDogCages(pet, cages);
-//
-//		}
-
 	}
 
 	private void updateDogCages(Pet pet, int key) {
@@ -242,7 +233,21 @@ public class VirtualPetShelter {
 	}
 
 	public Set<?> getKeys() {
-		// TODO Auto-generated method stub
 		return shelter.keySet();
 	}
+	
+	/**
+	 * Walk all dogs in Shelter.
+	 */
+
+	public void walkDogs() {
+		
+		for(Pet pet: shelter.values()) {
+		
+			if(pet instanceof DogStuff ) {
+				((DogStuff) pet).walk();
+			}
+		}
+	}
+
 }

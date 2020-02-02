@@ -44,4 +44,9 @@ public class Dog extends Organic implements DogStuff {
 		return soil();
 	}
 
+	public int get_HEALTH_REDUCTION_FOR_WALKING() {
+		
+		return _HEALTH_REDUCTION_FOR_WALKING;
+	}
+
 }

@@ -487,6 +487,27 @@ public class VirtualPetShelterTest {
 	}
 
 	@Test
+	public void walkDogsDecreasesHealthBy_HEALTH_REDUCTION_FOR_WALKING() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		int _HEALTH_REDUCTION_FOR_WALKING = ((Dog) underTest.getPetByKey(1)).get_HEALTH_REDUCTION_FOR_WALKING();
+		// Act
+		int preWalkHealth = underTest.getPetByKey(1).getHealth();
+		underTest.walkDogs();
+		int postWalkHealth = underTest.getPetByKey(1).getHealth();
+
+		// Assert
+		assertEquals(_HEALTH_REDUCTION_FOR_WALKING, postWalkHealth-preWalkHealth);
+	}
+
+	@Test
 	public void isInShelterIsTrueForDog_Test() {
 		// Arrange
 		VirtualPetShelter underTest = new VirtualPetShelter();
