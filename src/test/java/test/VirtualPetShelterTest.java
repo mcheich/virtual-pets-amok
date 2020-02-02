@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -123,7 +124,7 @@ public class VirtualPetShelterTest {
 		underTest.intake("roboCat", "roboCat_test", "roboCat description");
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
-		underTest.adoptOut("cat_test");
+		underTest.adoptOutByName("cat_test");
 		int result = underTest.getShelter().size();
 		// Assert
 		assertEquals(4, result);
@@ -423,7 +424,7 @@ public class VirtualPetShelterTest {
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
 		underTest.tick();
-		int result = underTest.getCageCleanlinessByName("dog_test");
+		int result = underTest.getCageCleanlinessByKey("dog_test");
 		// Assert
 		assertEquals(2, result);
 	}
@@ -441,7 +442,7 @@ public class VirtualPetShelterTest {
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
 		underTest.tick();
-		int result = underTest.getCageCleanlinessByName("dog2_test");
+		int result = underTest.getCageCleanlinessByKey("2");
 		// Assert
 		assertEquals(2, result);
 	}
@@ -480,7 +481,7 @@ public class VirtualPetShelterTest {
 		// Act
 		underTest.tick();
 		underTest.cleanCages();
-		int result = underTest.getCageCleanlinessByName("dog_test");
+		int result = underTest.getCageCleanlinessByKey("dog_test");
 		// Assert
 		assertEquals(0, result);
 	}
@@ -517,7 +518,6 @@ public class VirtualPetShelterTest {
 		boolean result = underTest.isInShelter("test");
 		// Assert
 		assertEquals(false, result);
-		
 	}
 
 	@Test
@@ -532,11 +532,97 @@ public class VirtualPetShelterTest {
 		underTest.intake("roboCat", "roboCat_test", "roboCat description");
 		underTest.intake("undefined", "undefined_test", "undefined description");
 		// Act
-		int result = underTest.getKeyByName("DOG_TEST");
+		int result = underTest.getKeyByName("dog2_test");
 		// Assert
 		assertEquals(2, result);
-		
 	}
 
+	@Test
+	public void getPetByIDReturnsCorrectPet() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		Pet petUnderTest = underTest.getPetByKey(2);
+		String result = petUnderTest.getName();
+		// Assert
+		assertEquals("dog2_test", result);
+	}
+
+	@Test
+	public void adoptOutByIDRemovesPetUnderTest() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		underTest.adoptOutByID(2);
+		boolean result = underTest.getShelter().containsKey(2);
+		// Assert
+		assertEquals(false, result);
+	}
+	
+	@Test
+	public void adoptOutByIDReturnsFalseIfPetIdDoesNotExist() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		boolean result = underTest.adoptOutByID(42); 
+		// Assert
+		assertEquals(false, result);
+	}
+
+	@Test
+	public void adoptOutByIDReturnsTrueIfPetIdDoesExist() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		boolean result = underTest.adoptOutByID(2); 
+		// Assert
+		assertEquals(true, result);
+	}
+
+	@Test
+	public void getKeysReturnSetOfKeys() {
+		// Arrange
+		VirtualPetShelter underTest = new VirtualPetShelter();
+		underTest.intake("dog", "dog_test", "dog description");
+		underTest.intake("dog", "dog2_test", "dog2 description");
+		underTest.intake("cat", "cat_test", "cat description");
+		underTest.intake("cat", "cat2_test", "cat2 description");
+		underTest.intake("roboDog", "roboDog_test", "roboDog description");
+		underTest.intake("roboCat", "roboCat_test", "roboCat description");
+		underTest.intake("undefined", "undefined_test", "undefined description");
+		// Act
+		Set<?> setUnderTest = underTest.getKeys();
+		int result = setUnderTest.size(); 
+		// Assert
+		assertEquals(7, result);
+	}
 
 }

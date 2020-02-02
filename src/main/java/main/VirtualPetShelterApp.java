@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
@@ -46,7 +47,7 @@ public class VirtualPetShelterApp {
 				playMessage();
 				break;
 			case "4":
-				adoptOut(shelter, input);
+				adoptOutByKey(shelter, input);
 				break;
 			case "5":
 				intakePet(shelter, input);
@@ -74,7 +75,7 @@ public class VirtualPetShelterApp {
 			// "Time Passes"...
 			shelter.tick();
 
-		} while (!selection.equals("6"));
+		} while (!selection.equals("10"));
 
 		input.close();
 
@@ -95,9 +96,9 @@ public class VirtualPetShelterApp {
 	}
 
 	private static void errorMessage(String selection) {
-		System.out.println("#############################################################");
-		System.out.println("Your last entry " + selection + "is an option.  Try again! ##");
-		System.out.println("#############################################################\n");
+		System.out.println("##################################################################");
+		System.out.println("Your last entry " + selection + " is NOT an option.  Try again! ##");
+		System.out.println("##################################################################\n");
 	}
 
 	private static void oilMessage() {
@@ -134,18 +135,21 @@ public class VirtualPetShelterApp {
 	/**
 	 * Remove Virtual Pet by name from shelter
 	 */
-	private static void adoptOut(VirtualPetShelter shelter, Scanner input) {
+	private static void adoptOutByKey(VirtualPetShelter shelter, Scanner input) {
 
 		// Get name of pet from user
-		System.out.println("** What is the name of the animal that is being adopted? **\n");
-		String adoptee = input.nextLine();
-		boolean match = shelter.adoptOut(adoptee);
+		System.out.println("** What is the ID# of the animal that is being adopted? **\n");
+		int adoptee = input.nextInt();
+		input.nextLine(); //Clear Inputs
+		
+		String adopteeName = shelter.getPetByKey(adoptee).getName();
+		boolean match = shelter.adoptOutByID(adoptee);
 
 		// Remove pet is in system, otherwise advise not in system.
 		if (match) {
-			System.out.println(adoptee + " has been adopted!\n");
+			System.out.println(adopteeName + " has been adopted!\n");
 		} else {
-			System.out.println(adoptee + " does not match our records.\n");
+			System.out.println(adopteeName + " does not match our records.\n");
 		}
 	}
 
@@ -243,18 +247,25 @@ public class VirtualPetShelterApp {
 		System.out.println("#########################################################");
 		System.out.println("##                   Pet Status Table                  ##");
 		System.out.println("---------------------------------------------------------");
-		System.out.println("Name        |Health |Boredom|Thirst |Hunger | Oil Level | Dog Cage Waste | Litter Box Waste");
-		System.out.println("------------|-------|-------|-------|-------|-----------|----------------|------------------");
+		System.out.println("ID# |  Name        |Health |Boredom|Thirst |Hunger | Oil Level | Dog Cage Waste | Litter Box Waste");
+		System.out.println("----|--------------|-------|-------|-------|-------|-----------|----------------|------------------");
 
+		
 		/* List Pets */
-		for (Pet pet : shelter.getRoster()) {
-
-			String petName = pet.getName();
+		Iterator<?> iterator = shelter.getKeys().iterator();  
+		
+		while(iterator.hasNext()) {
+		//for (Pet pet : shelter.getRoster()) {
+			int nextPet = (Integer)iterator.next();
+			Pet pet = shelter.getShelter().get(nextPet);
+			String petName = pet.getName();//pet.getName();
 			int petBoredom = pet.getBoredom();
-			int petHealth = pet.getHealth();// int petHealth = pet.health; // :MIKEQ: Why can I use this?! I thought it
-											// was private
+			int petHealth = pet.getHealth();			
+			int petID = nextPet;
+			//int petID = shelter.getKeyByName(petName);// int petHealth = pet.health; // :MIKEQ: Why can I use this?! I thought it
+											          // was private
 
-			System.out.print(String.format("%1$-12s|%2$-7s|%3$-7s|", petName, petHealth, petBoredom));
+			System.out.print(String.format("%1$-4s|%2$-14s|%3$-7s|%4$-7s|", petID, petName, petHealth, petBoredom));
 
 			if (pet instanceof Organic) {
 
@@ -269,7 +280,7 @@ public class VirtualPetShelterApp {
 			}
 			if (pet instanceof Dog) {
 
-				int cageWaste = shelter.getCageCleanlinessByName(petName);
+				int cageWaste = shelter.getCageCleanlinessByKey(petName);
 				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "NA", cageWaste, "NA"));
 			}
 			if (pet instanceof Cat) {

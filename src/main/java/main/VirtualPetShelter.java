@@ -2,6 +2,7 @@ package main;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -9,8 +10,9 @@ import java.util.Set;
 public class VirtualPetShelter {
 
 	private Map<Integer, Pet> shelter = new HashMap<Integer, Pet>();
-	private Map<String, Integer> cages = new HashMap<String, Integer>();
-
+	private Map<Integer, Integer> cages = new HashMap<Integer, Integer>();
+	private int shelterKey = 0;
+	
 	private int litterBox = 10;
 
 	public int getLitterBox() {
@@ -27,29 +29,29 @@ public class VirtualPetShelter {
 
 	public void intake(String petType, String name, String description) {
 
-		int key = shelter.size() + 1;
+		shelterKey++;
 
 		switch (petType.toLowerCase()) {
 		case "dog":
 			Dog newDog = new Dog(name, description, 10, 10, 10, 10);
-			this.shelter.put(key, newDog);
-			this.cages.put(name, 0); // Give new dog a cage
+			this.shelter.put(shelterKey, newDog);
+			this.cages.put(shelterKey, 0); // Give new dog a cage
 			break;
 		case "cat":
 			Cat newCat = new Cat(name, description, 10, 10, 10, 10);
-			this.shelter.put(key, newCat);
+			this.shelter.put(shelterKey, newCat);
 			break;
 		case "robodog":
 			RoboDog newRoboDog = new RoboDog(name, description, 10, 10, 10);
-			this.shelter.put(key, newRoboDog);
+			this.shelter.put(shelterKey, newRoboDog);
 			break;
 		case "robocat":
 			RoboCat newRoboCat = new RoboCat(name, description, 10, 10, 10);
-			this.shelter.put(key, newRoboCat);
+			this.shelter.put(shelterKey, newRoboCat);
 			break;
 		default:
 			Pet undefinedPet = new Pet(name, description, 10, 10);
-			this.shelter.put(key, undefinedPet);
+			this.shelter.put(shelterKey, undefinedPet);
 		}
 	}
 
@@ -73,7 +75,7 @@ public class VirtualPetShelter {
 	 * @param namePara
 	 * @return
 	 */
-	public boolean adoptOut(String name) {
+	public boolean adoptOutByName(String name) {
 
 		for (Map.Entry<Integer, Pet> pet : shelter.entrySet()) {
 			if (pet.getValue().getName().equals(name)) {
@@ -120,31 +122,46 @@ public class VirtualPetShelter {
 
 	public void tick() {
 
-		for (Pet pet : shelter.values()) {
-
-			pet.tick();
-			updateLitterBox(pet);
-			updateDogCages(pet);
-
+		
+		/* List Pets */
+		Iterator<?> iterator = shelter.keySet().iterator();  
+		
+		while(iterator.hasNext()) {
+			int key = (Integer) iterator.next();
+			Pet thisPet = shelter.get(key);
+			
+			thisPet.tick();
+			updateLitterBox(thisPet);
+			updateDogCages(thisPet, key);
+			
 		}
+		
+//		for (Pet pet : shelter.values()) {
+//
+//			pet.tick();
+//			updateLitterBox(pet);
+//			updateDogCages(pet, cages);
+//
+//		}
+
 	}
 
-	private void updateDogCages(Pet pet) {
+	private void updateDogCages(Pet pet, int key) {
 
-		String petName = pet.getName();
+		//String petName = pet.getName();
 		boolean isDog = pet instanceof Dog;
-		boolean hasCage = cages.containsKey(pet.getName());
+		boolean hasCage = cages.containsKey(key);
 		int dirtyThreshold = 10;
 
 		if (isDog && hasCage) {
 
-			int existingSoilAmount = cages.get(petName);
+			int existingSoilAmount = cages.get(key);
 			int newSoilAmount = ((Dog) pet).soil();
 
 			if (existingSoilAmount >= dirtyThreshold) {
 				pet.adjustHealth(1);
 			}
-			cages.put(petName, existingSoilAmount + newSoilAmount);
+			cages.put(key, existingSoilAmount + newSoilAmount);
 		}
 	}
 
@@ -179,19 +196,13 @@ public class VirtualPetShelter {
 		this.litterBox = 0;
 	}
 
-	public int getCageCleanlinessByName(String name) {
-
-		for (Map.Entry<String, Integer> cage : cages.entrySet()) {
-			if (cage.getKey().equals(name)) {
-				return cage.getValue();
-			}
-		}
-		return 0;
+	public int getCageCleanlinessByKey(int key) {
+		return cages.get(key);
 	}
 
 	public void cleanCages() {
 
-		for (Map.Entry<String, Integer> cage : cages.entrySet()) {
+		for (Entry<Integer, Integer> cage : cages.entrySet()) {
 			cage.setValue(0);
 		}
 
@@ -206,13 +217,32 @@ public class VirtualPetShelter {
 		}
 		return false;
 	}
-	
 
 	public int getKeyByName(String name) {
 		// TODO Auto-generated method stub
 		for (Entry<Integer, Pet> pet : shelter.entrySet()) {
-			return pet.getKey();
+			if (pet.getValue().getName().equals(name)) {
+				return pet.getKey();
+			}
 		}
 		return 0;
+	}
+
+	public Pet getPetByKey(int key) {
+		return this.shelter.get(key);
+	}
+
+	public boolean adoptOutByID(int key) {
+
+		if (shelter.containsKey(key)) {
+			shelter.remove(key);
+			return true;
+		}
+		return false;
+	}
+
+	public Set<?> getKeys() {
+		// TODO Auto-generated method stub
+		return shelter.keySet();
 	}
 }
