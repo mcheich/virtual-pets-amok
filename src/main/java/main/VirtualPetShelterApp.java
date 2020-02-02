@@ -244,9 +244,9 @@ public class VirtualPetShelterApp {
 	 * @param shelterPara
 	 */
 	private static void showRosterAndStats(VirtualPetShelter shelter) {
-		System.out.println("#########################################################");
-		System.out.println("##                   Pet Status Table                  ##");
-		System.out.println("---------------------------------------------------------");
+		System.out.println("###################################################################################################");
+		System.out.println("##                   Pet Status Table                                                            ##");
+		System.out.println("---------------------------------------------------------------------------------------------------");
 		System.out.println("ID# |  Name        |Health |Boredom|Thirst |Hunger | Oil Level | Dog Cage Waste | Litter Box Waste");
 		System.out.println("----|--------------|-------|-------|-------|-------|-----------|----------------|------------------");
 
@@ -276,17 +276,17 @@ public class VirtualPetShelterApp {
 			if (pet instanceof Robotic) {
 
 				int petOilLevel = ((Robotic) pet).getOilLevel();
-				System.out.println(String.format("%1$-7s|%2$-7s|%3$-7s", "NA", "NA", petOilLevel));
+				System.out.println(String.format("%1$-7s|%2$-7s|%3$-7s", "", "", petOilLevel));
 			}
 			if (pet instanceof Dog) {
 
 				int cageWaste = shelter.getCageCleanlinessByKey(nextPet);
-				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "NA", cageWaste, "NA"));
+				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "", cageWaste, ""));
 			}
 			if (pet instanceof Cat) {
 
 				int litterBoxWaste = shelter.getLitterBox();
-				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "NA", "NA", litterBoxWaste));
+				System.out.println(String.format("%1$-11s|%2$-16s|%3$-16s", "", "", litterBoxWaste));
 			}
 
 		}
