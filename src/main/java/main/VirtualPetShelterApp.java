@@ -242,7 +242,7 @@ public class VirtualPetShelterApp {
 		optionList.add("Adopt a pet");
 		optionList.add("Admit a pet");
 		optionList.add("Play with a specific pet");
-		optionList.add("Oil robitic pets");
+		optionList.add("Oil robotic pets");
 		optionList.add("Clean dog cages");
 		optionList.add("Clean the litterbox");
 		optionList.add("Walk the dogs");
@@ -278,8 +278,6 @@ public class VirtualPetShelterApp {
 			int petBoredom = pet.getBoredom();
 			int petHealth = pet.getHealth();			
 			int petID = nextPet;
-			//int petID = shelter.getKeyByName(petName);// int petHealth = pet.health; // :MIKEQ: Why can I use this?! I thought it
-											          // was private
 
 			System.out.print(String.format("%1$-4s|%2$-14s|%3$-7s|%4$-7s|", petID, petName, petHealth, petBoredom));
 
